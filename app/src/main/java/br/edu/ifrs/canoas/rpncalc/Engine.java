@@ -57,11 +57,33 @@ public class Engine {
     }
 
     void multiplicacao() {
-        System.out.println("Não implementado ainda!");
+        if (pilha.size() < 2) {
+            poucosOperandos();
+        } else {
+            Double a, b;
+            b = pilha.pop();
+            a = pilha.pop();
+            pilha.push(a*b);
+        }
+
     }
 
     void divisao() {
-        System.out.println("Não implementado ainda!");
+        if (pilha.size() < 2) {
+            poucosOperandos();
+        } else {
+            Double a, b;
+            b = pilha.pop();
+            a = pilha.pop();
+            if (b == 0){
+                divisaoPorZero();
+                pilha.push(a);
+                pilha.push(b);
+                return;
+            }
+            pilha.push(a/b);
+        }
+
     }
 
     void limpar() {
