@@ -80,4 +80,23 @@ public class EngineTest {
         assertEquals(1, pilha.size(), "Deveria haver exatamente um operando na pilha.");
         assertEquals(10.0, pilha.pop(), "O mesmo operando deveria estar no topo da pilha.");
     }
+
+    @Test
+    @DisplayName("Subtrair dois números.")
+    void somarDoisNumeros() {
+        engine.operando(10.0);
+        engine.operando(20.0);
+        engine.operar("-");
+        assertEquals(1, pilha.size(), "Deveria haver exatamente um operando na pilha.");
+        assertEquals(30.0, pilha.pop(), "A subtração dos operandos deveria estar no topo da pilha.");
+    }
+
+    @Test
+    @DisplayName("Subtrair um número.")
+    void somarUmNumero() {
+        engine.operando(10.0);
+        engine.operar("-");
+        assertEquals(1, pilha.size(), "Deveria haver exatamente um operando na pilha.");
+        assertEquals(10.0, pilha.pop(), "O mesmo operando deveria estar no topo da pilha.");
+    }
 }
