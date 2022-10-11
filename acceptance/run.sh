@@ -5,11 +5,11 @@ cp ../app/build/libs/app.jar ./app.jar
 falhou=0
 for entrada in *_entrada.txt; do
   teste=$(echo ${entrada} | sed -e s/_entrada.txt//)
-  saida_esperada="${teste}_saida.txt"
-  linhas=$(wc -l ${saida_esperada} | cut -f 1 -d " ")
+  cat "${teste}_saida.txt" | tr -d '\r' > saida_esperada.txt
+  linhas=$(wc -l saida_esperada.txt | cut -f 1 -d " ")
   echo -n "Rodando o teste de aceitação ${teste}.........."
-  java -jar app.jar < ${entrada} | tail -n ${linhas} -- > saida_atual.txt
-  diff -y --strip-trailing-cr ${saida_esperada} saida_atual.txt > diferenca.txt
+  java -jar app.jar < ${entrada} | tr -d '\r' | tail -n ${linhas} -- > saida_atual.txt
+  diff -y --strip-trailing-cr saida_esperada.txt saida_atual.txt > diferenca.txt
   if [ $? -ne 0 ]; then
     falhou=1
     echo "FALHOU"
@@ -23,6 +23,6 @@ for entrada in *_entrada.txt; do
   fi
 done
 
-rm saida_atual.txt diferenca.txt
+rm saida_atual.txt saida_esperada.txt diferenca.txt
 
 exit ${falhou}
