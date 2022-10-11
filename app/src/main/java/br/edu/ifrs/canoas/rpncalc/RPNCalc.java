@@ -11,7 +11,6 @@ public class RPNCalc {
         Stack<Double> pilha = new Stack<>();
         Engine engine = new Engine(pilha);
         Tokenizer tokenizer = new Tokenizer(engine.operacoesValidas());
-        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out), true, StandardCharsets.UTF_8));
 
         engine.limparTela();
         engine.ajuda();
