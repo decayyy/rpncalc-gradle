@@ -46,7 +46,14 @@ public class Engine {
     }
 
     void subtracao() {
-        System.out.println("Não implementado ainda!");
+        if (pilha.size() < 2) {
+            poucosOperandos();
+        } else {
+            Double a, b;
+            b = pilha.pop();
+            a = pilha.pop();
+            pilha.push(a-b);
+        }
     }
 
     void multiplicacao() {
